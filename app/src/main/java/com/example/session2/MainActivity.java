@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TextView mTextView;
     private Button mButton;
+    private FrameLayout mFrameLayout;
 
     public static final String NAME = "name";
 
@@ -25,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         mTextView = findViewById(R.id.textView);
         mButton = findViewById(R.id.button);
+        mFrameLayout = findViewById(R.id.frame_layout);
+
         mTextView.setText("Tanishq");
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
+                new BlankFragment()).commit();
 
         mButton.setOnClickListener(view -> {
 
@@ -33,5 +40,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(NAME, mTextView.getText().toString());
             startActivity(intent);
         });
+
+
     }
 }
